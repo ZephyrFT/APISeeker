@@ -248,7 +248,7 @@ func CrawlerRun(website string, host string, crawledLimit int, tmpDir string) {
 }
 
 func saveToJSON(htmlMap *sync.Map, filename string) {
-	jsonFile, err := os.OpenFile(filename, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+	jsonFile, err := os.OpenFile(filename, os.O_CREATE|os.O_WRONLY|os.O_TRUNC, 0644)
 	if err != nil {
 		fmt.Println("Error creating jsonfile:", err)
 		return

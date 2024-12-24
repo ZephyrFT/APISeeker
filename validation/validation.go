@@ -140,7 +140,40 @@ type API struct {
 	Parameters string
 }
 
-func RunValidation(site string, h string, tmpDir string, workers int) {
+func convertToAPISlice(input interface{}) ([]API, error) {
+	if input == nil {
+		return nil, fmt.Errorf("input is nil")
+	}
+
+	slice, ok := input.([]interface{})
+	if !ok {
+		return nil, fmt.Errorf("expected []interface{}, got %T", input)
+	}
+
+	result := make([]API, 0, len(slice))
+	for _, item := range slice {
+		if apiMap, ok := item.(map[string]interface{}); ok {
+			endpoint := ""
+			parameters := ""
+			if apiMap["Endpoint"] != nil {
+				endpoint = apiMap["Endpoint"].(string)
+			}
+
+			if apiMap["Parameter"] != nil {
+				parameters = apiMap["Parameter"].(string)
+			}
+
+			api := API{
+				Endpoint:   endpoint,
+				Parameters: parameters,
+			}
+			result = append(result, api)
+		}
+	}
+	return result, nil
+}
+
+func RunValidation(hst string, site string, h string, tmpDir string, workers int, resultDir string) {
 	website = site
 	host = h
 	numOfWorkers = workers
@@ -150,25 +183,32 @@ func RunValidation(site string, h string, tmpDir string, workers int) {
 	failed := make(chan string, numOfWorkers)
 
 	currentTime := time.Now()
-	fileName := "Result_" + website + "_" + currentTime.Format("20060102_150405")
+	fileName := "Result_" + hst + "_" + currentTime.Format("20060102_150405")
 	fileNameSucceed := fileName + ".txt"
 	fileNameFailed := fileName + "_failed.txt"
 
-	dir := path.Join(tmpDir, "validationResult")
-	fileSucceed, err := os.OpenFile(path.Join(dir, fileNameSucceed), os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+	// 不存在则创建
+	if _, err := os.Stat(resultDir); os.IsNotExist(err) {
+		err = os.MkdirAll(resultDir, 0755)
+		if err != nil {
+			log.Fatal("can't create the result directory: ", err)
+		}
+	}
+
+	fileSucceed, err := os.OpenFile(path.Join(resultDir, fileNameSucceed), os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
 	if err != nil {
 		log.Fatal("can't open the success result file: ", err)
 	}
 	defer fileSucceed.Close()
 
-	fileFailed, err := os.OpenFile(path.Join(dir, fileNameFailed), os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+	fileFailed, err := os.OpenFile(path.Join(resultDir, fileNameFailed), os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
 	if err != nil {
 		log.Fatal("can't open the success result file: ", err)
 	}
 	defer fileFailed.Close()
 
-	inputTemplate := "Given the following website information keywords and some visible apis in the website, please respond with a JSON for any hidden API endpoints that may exist in this website.\n\nResponse Format:\n{\n  \"Shadow_APIs\": [\n    {\n      \"Endpoint\": \"API endpoint\",\n      \"Parameters\": [\"parameter1\", \"parameter2\", ...] or \"\"\n    }\n  ]\n}\n\nGiven the keywords \"RoleAdd adds role name authentication system\" and the visible API \"/auth/user/login\", we can deduce a potential hidden API endpoint. First, \"RoleAdd\" indicates adding a role, \"role name\" is the resource, and \"authentication system\" provides the context. Since the visible API \"/auth/user/login\" handles user authentication, it’s likely that other user-related actions follow a similar structure. Therefore, we can infer that an API for role management might be under the same \"/auth\" path, using a similar naming convention, such as \"/auth/role/add\" or \"/auth/role/create\". This reasoning, based on the naming patterns and structure of the visible API, leads to the conclusion that a hidden endpoint could be \"/auth/role/add\", responsible for adding roles within the authentication system.\n\nFocus more on specific, hidden, or less obvious endpoints based on provided keywords. DO NOT ANSWER THE GIVEN APIS.\n\nKeywords: "
-	filename := path.Join(tmpDir, "extracted-"+website+".json")
+	inputTemplate := "Given the following website information keywords and some visible apis in the website, please respond with a JSON for any hidden API endpoints that may exist in this website.\n\nResponse Format:\n{\n  \"Shadow_APIs\": [\n    {\n      \"Endpoint\": \"API endpoint\",\n      \"Parameters\": [\"parameter1\", \"parameter2\", ...] or \"\"\n    }\n  ]\n}\n\nGiven the keywords \"RoleAdd adds role name authentication system\" and the visible API \"/auth/user/login\", we can deduce a potential hidden API endpoint. First, \"RoleAdd\" indicates adding a role, \"role name\" is the resource, and \"authentication system\" provides the context. Since the visible API \"/auth/user/login\" handles user authentication, it’s likely that other user-related actions follow a similar structure. Therefore, we can infer that an API for role management might be under the same \"/auth\" path, using a similar naming convention, such as \"/auth/role/add\" or \"/auth/role/create\". This reasoning, based on the naming patterns and structure of the visible API, leads to the conclusion that a hidden endpoint could be \"/auth/role/add\", responsible for adding roles within the authentication system.\n\nFocus more on specific, hidden, or less obvious endpoints based on provided keywords. DO NOT ANSWER THE GIVEN VISIBLE APIS! THE JSON FORMAT MUST BE CORRECT!\n\nkeywords: "
+	filename := path.Join(tmpDir, "extracted-"+hst+".json")
 
 	jsonByte, err := os.ReadFile(filename)
 	if err != nil {
@@ -206,8 +246,11 @@ func RunValidation(site string, h string, tmpDir string, workers int) {
 		content := element["Content"].(string)
 		u := element["URL"].(string)
 
-		var visibleAPI []API
-		visibleAPI = element["VisibleAPI"].([]API)
+		visibleAPI, err := convertToAPISlice(element["VisibleAPI"])
+		if err != nil {
+			log.Printf("[ERROR] converting VisibleAPI: %v", err)
+			continue
+		}
 
 		parsedURL, err := url.Parse(u)
 		if err != nil {

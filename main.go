@@ -14,6 +14,7 @@ var (
 	website           string
 	host              string
 	tmpDir            string
+	resultDir         string
 	keywordsLLMURL    string
 	validationsLLMURL string
 	maxCrawledLimit   int
@@ -24,8 +25,9 @@ func main() {
 	flag.StringVar(&website, "url", "https://www.seu.edu.cn", "Website URL")
 	flag.StringVar(&host, "host", "seu.edu.cn", "Host name")
 	flag.StringVar(&tmpDir, "tmp", ".tmp", "Temporary directory")
-	flag.StringVar(&keywordsLLMURL, "keywords", "http://121.248.52.64:8000/v1/chat/completions", "Keywords LLM URL")
-	flag.StringVar(&validationsLLMURL, "validations", "http://121.248.52.64:8001/v1/chat/completions", "Validations LLM URL")
+	flag.StringVar(&resultDir, "result", "result", "Result directory")
+	flag.StringVar(&keywordsLLMURL, "keywords", "http://192.168.3.6:8000/v1/chat/completions", "Keywords LLM URL")
+	flag.StringVar(&validationsLLMURL, "validations", "http://192.168.3.5:8000/v1/chat/completions", "Validations LLM URL")
 	flag.IntVar(&maxCrawledLimit, "limit", 1000, "Max crawled limitation")
 	flag.BoolVar(&useOCR, "ocr", false, "Use OCR to extract text from images")
 
@@ -52,6 +54,10 @@ func main() {
 		tmpDir = filepath.Join(currentDir, tmpDir)
 	}
 
+	if !filepath.IsAbs(resultDir) {
+		resultDir = filepath.Join(currentDir, resultDir)
+	}
+
 	_, err = os.Stat(tmpDir)
 	if os.IsNotExist(err) {
 		err = os.MkdirAll(tmpDir, 0755)
@@ -76,5 +82,5 @@ func main() {
 
 	// 大模型推理 + validation 验证
 	log.Printf("Start validating %v", website)
-	validation.RunValidation(website, validationsLLMURL, tmpDir, 10)
+	validation.RunValidation(host, website, validationsLLMURL, tmpDir, 10, resultDir)
 }

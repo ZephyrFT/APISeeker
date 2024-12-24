@@ -33,12 +33,21 @@ func ExtractKeywords(host string, tmpDir string, LLMURL string) {
 		jsonData[index].Content = c
 	}
 
+	fmt.Println()
+
 	output, err := json.MarshalIndent(jsonData, "", "\t")
 	if err != nil {
 		logrus.Fatal(err)
 	}
 
-	if err = os.WriteFile(path.Join(tmpDir, "extracted-"+host+".json"), output, 0666); err != nil {
+	outputPath := path.Join(tmpDir, "extracted-"+filename)
+	file, err := os.OpenFile(outputPath, os.O_CREATE|os.O_WRONLY|os.O_TRUNC, 0666)
+	if err != nil {
+		logrus.Fatal(err)
+	}
+	defer file.Close()
+
+	if _, err = file.Write(output); err != nil {
 		logrus.Fatal(err)
 	}
 }
