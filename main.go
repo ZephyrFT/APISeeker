@@ -15,6 +15,9 @@ var (
 	host              string
 	tmpDir            string
 	resultDir         string
+	chromeDriverPath  string
+	chromePath        string
+	cookie            string
 	keywordsLLMURL    string
 	validationsLLMURL string
 	maxCrawledLimit   int
@@ -28,6 +31,9 @@ func main() {
 	flag.StringVar(&resultDir, "result", "result", "Result directory")
 	flag.StringVar(&keywordsLLMURL, "keywords", "http://192.168.3.6:8000/v1/chat/completions", "Keywords LLM URL")
 	flag.StringVar(&validationsLLMURL, "validations", "http://192.168.3.5:8000/v1/chat/completions", "Validations LLM URL")
+	flag.StringVar(&chromeDriverPath, "chromedriver", "/usr/local/bin/chromedriver", "Chrome driver path")
+	flag.StringVar(&chromePath, "chrome", "/usr/bin/google-chrome", "Chrome path")
+	flag.StringVar(&cookie, "cookie", "", "Cookie")
 	flag.IntVar(&maxCrawledLimit, "limit", 1000, "Max crawled limitation")
 	flag.BoolVar(&useOCR, "ocr", false, "Use OCR to extract text from images")
 
@@ -68,12 +74,12 @@ func main() {
 
 	// JSCrawler 爬取
 	log.Printf("Start crawling %v", website)
-	run.CrawlerRun(website, host, maxCrawledLimit, tmpDir)
+	run.CrawlerRun(website, host, maxCrawledLimit, tmpDir, cookie)
 
 	// 使用selenium爬取第二遍正文
 	if useOCR {
 		log.Printf("Start crawling %v again with OCR", website)
-		run.RunOCR(host, tmpDir)
+		run.RunOCR(host, tmpDir, chromePath, chromeDriverPath)
 	}
 
 	// 关键词提取

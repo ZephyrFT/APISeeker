@@ -98,7 +98,7 @@ func processAPI(API string, apiChan chan string, paramChan chan string) {
 
 }
 
-func CrawlerRun(website string, host string, crawledLimit int, tmpDir string) {
+func CrawlerRun(website string, host string, crawledLimit int, tmpDir string, cookie string) {
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
@@ -211,7 +211,7 @@ func CrawlerRun(website string, host string, crawledLimit int, tmpDir string) {
 	wg.Add(1)
 	job := &crawler.Spider{
 		URL:        website,
-		Cookie:     "",
+		Cookie:     cookie,
 		UserAgent:  "",
 		Host:       host,
 		ParentHTML: nil,

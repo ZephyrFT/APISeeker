@@ -109,7 +109,6 @@ func validation(response string, domain string, result chan string, failed chan 
 		return
 	}
 
-	// 没有用到parameters
 	for i, item := range payload {
 		endpoint := item.(map[string]interface{})["Endpoint"].(string)
 		u := domain + endpoint

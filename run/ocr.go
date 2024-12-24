@@ -10,7 +10,7 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-func RunOCR(host string, tmpDir string) {
+func RunOCR(host string, tmpDir string, chromePath string, chromeDriverPath string) {
 	filename := "APIInfo-" + host + ".json"
 
 	f, err := os.ReadFile(path.Join(tmpDir, filename))
@@ -25,7 +25,7 @@ func RunOCR(host string, tmpDir string) {
 
 	for index, item := range jsonData {
 		fmt.Printf("\rOCR in progress: %d/%d", index+1, len(jsonData))
-		filename, err := ocr.TakeScreenShot(item.URL, host, tmpDir)
+		filename, err := ocr.TakeScreenShot(item.URL, host, tmpDir, chromePath, chromeDriverPath)
 		if err != nil {
 			logrus.Error("failed to take screenshot: ", err)
 			continue

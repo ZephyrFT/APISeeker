@@ -24,11 +24,10 @@ const (
 )
 
 var (
-	chromeDriverPath = "/usr/local/bin/chromedriver"
-	jpgOptions       = &jpeg.Options{Quality: 100}
+	jpgOptions = &jpeg.Options{Quality: 100}
 )
 
-func TakeScreenShot(url string, host string, tmpDir string) (string, error) {
+func TakeScreenShot(url string, host string, tmpDir string, chromePath string, chromeDriverPath string) (string, error) {
 	resp, err := http.Get(url)
 	if err != nil {
 		return "", err
@@ -57,7 +56,7 @@ func TakeScreenShot(url string, host string, tmpDir string) (string, error) {
 
 	caps := selenium.Capabilities{"browserName": "Chrome"}
 	chromeCaps := chrome.Capabilities{
-		Path: "/usr/bin/google-chrome",
+		Path: chromePath,
 		Args: []string{
 			"--headless",
 			"--no-sandbox",
