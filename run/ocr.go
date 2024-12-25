@@ -24,7 +24,7 @@ func RunOCR(host string, tmpDir string, chromePath string, chromeDriverPath stri
 	}
 
 	for index, item := range jsonData {
-		fmt.Printf("\rOCR in progress: %d/%d", index+1, len(jsonData))
+		fmt.Printf("\rOCR in progress: %d/%d ", index+1, len(jsonData))
 		filename, err := ocr.TakeScreenShot(item.URL, host, tmpDir, chromePath, chromeDriverPath)
 		if err != nil {
 			logrus.Error("failed to take screenshot: ", err)
@@ -32,6 +32,7 @@ func RunOCR(host string, tmpDir string, chromePath string, chromeDriverPath stri
 		}
 
 		text, err := ocr.Get_OCR(filename)
+		fmt.Print("=======OCR text: ", text)
 		if err != nil {
 			logrus.Error("failed to get OCR: ", err)
 			continue

@@ -25,8 +25,8 @@ var (
 )
 
 func main() {
-	flag.StringVar(&website, "url", "https://www.seu.edu.cn", "Website URL")
-	flag.StringVar(&host, "host", "seu.edu.cn", "Host name")
+	flag.StringVar(&website, "url", "https://www.baidu.com", "Website URL")
+	flag.StringVar(&host, "host", "baidu.com", "Host name")
 	flag.StringVar(&tmpDir, "tmp", ".tmp", "Temporary directory")
 	flag.StringVar(&resultDir, "result", "result", "Result directory")
 	flag.StringVar(&keywordsLLMURL, "keywords", "http://192.168.3.6:8000/v1/chat/completions", "Keywords LLM URL")
@@ -34,7 +34,7 @@ func main() {
 	flag.StringVar(&chromeDriverPath, "chromedriver", "/usr/local/bin/chromedriver", "Chrome driver path")
 	flag.StringVar(&chromePath, "chrome", "/usr/bin/google-chrome", "Chrome path")
 	flag.StringVar(&cookie, "cookie", "", "Cookie")
-	flag.IntVar(&maxCrawledLimit, "limit", 1000, "Max crawled limitation")
+	flag.IntVar(&maxCrawledLimit, "limit", 500, "Max crawled limitation")
 	flag.BoolVar(&useOCR, "ocr", false, "Use OCR to extract text from images")
 
 	flag.Parse()

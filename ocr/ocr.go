@@ -17,7 +17,7 @@ func Get_OCR(imagePath string) (string, error) {
 	}
 
 	// 使用 exec.Command 调用 Python 脚本并传递图片路径
-	cmd := exec.Command("python", "ocr.py", imagePath)
+	cmd := exec.Command("python", "ocr/ocr.py", imagePath)
 
 	// 获取 Python 脚本的标准输出
 	output, err := cmd.Output()
@@ -35,5 +35,5 @@ func Get_OCR(imagePath string) (string, error) {
 
 // func main() {
 // 	imagePath := "image.png"
-// 	fmt.Println(Get_OCR(imagePath))
+// 	fmt.Print(Get_OCR(imagePath))
 // }

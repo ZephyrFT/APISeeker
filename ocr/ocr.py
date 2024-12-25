@@ -1,6 +1,6 @@
 import sys
 import logging
-logging.disable(logging.DEBUG)  # 关闭DEBUG日志的打印
+logging.disable(logging.WARN)  # 关闭DEBUG日志的打印
 
 
 from paddleocr import PaddleOCR

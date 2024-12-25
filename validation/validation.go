@@ -207,7 +207,7 @@ func RunValidation(hst string, site string, h string, tmpDir string, workers int
 	defer fileFailed.Close()
 
 	inputTemplate := "Given the following website information keywords and some visible apis in the website, please respond with a JSON for any hidden API endpoints that may exist in this website.\n\nResponse Format:\n{\n  \"Shadow_APIs\": [\n    {\n      \"Endpoint\": \"API endpoint\",\n      \"Parameters\": [\"parameter1\", \"parameter2\", ...] or \"\"\n    }\n  ]\n}\n\nGiven the keywords \"RoleAdd adds role name authentication system\" and the visible API \"/auth/user/login\", we can deduce a potential hidden API endpoint. First, \"RoleAdd\" indicates adding a role, \"role name\" is the resource, and \"authentication system\" provides the context. Since the visible API \"/auth/user/login\" handles user authentication, it’s likely that other user-related actions follow a similar structure. Therefore, we can infer that an API for role management might be under the same \"/auth\" path, using a similar naming convention, such as \"/auth/role/add\" or \"/auth/role/create\". This reasoning, based on the naming patterns and structure of the visible API, leads to the conclusion that a hidden endpoint could be \"/auth/role/add\", responsible for adding roles within the authentication system.\n\nFocus more on specific, hidden, or less obvious endpoints based on provided keywords. DO NOT ANSWER THE GIVEN VISIBLE APIS! THE JSON FORMAT MUST BE CORRECT!\n\nkeywords: "
-	filename := path.Join(tmpDir, "extracted-"+hst+".json")
+	filename := path.Join(tmpDir, "extracted-APIInfo-"+hst+".json")
 
 	jsonByte, err := os.ReadFile(filename)
 	if err != nil {
