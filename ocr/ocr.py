@@ -3,8 +3,7 @@ import logging
 logging.disable(logging.DEBUG)  # 关闭DEBUG日志的打印
 
 
-from PIL import Image
-from paddleocr import PaddleOCR, draw_ocr
+from paddleocr import PaddleOCR
 
 # 编码设置
 sys.stdout.reconfigure(encoding='utf-8')

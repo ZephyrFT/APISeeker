@@ -32,3 +32,8 @@ func Get_OCR(imagePath string) (string, error) {
 
 	return decodedOutput, nil
 }
+
+// func main() {
+// 	imagePath := "image.png"
+// 	fmt.Println(Get_OCR(imagePath))
+// }
