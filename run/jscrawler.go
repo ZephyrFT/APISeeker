@@ -1,7 +1,6 @@
 package run
 
 import (
-	"apifinder/crawler"
 	"context"
 	"encoding/json"
 	"fmt"
@@ -14,6 +13,7 @@ import (
 	"sync"
 	"syscall"
 
+	"github.com/TheCoderAlex/APISeer/crawler"
 	"github.com/sirupsen/logrus"
 )
 

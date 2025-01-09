@@ -1,13 +1,14 @@
 package main
 
 import (
-	"apifinder/run"
-	"apifinder/validation"
 	"flag"
 	"fmt"
 	"log"
 	"os"
 	"path/filepath"
+
+	"github.com/TheCoderAlex/APISeer/run"
+	"github.com/TheCoderAlex/APISeer/validation"
 )
 
 var (

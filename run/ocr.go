@@ -1,12 +1,12 @@
 package run
 
 import (
-	"apifinder/ocr"
 	"encoding/json"
 	"fmt"
 	"os"
 	"path"
 
+	"github.com/TheCoderAlex/APISeer/ocr"
 	"github.com/sirupsen/logrus"
 )
 

@@ -13,9 +13,8 @@ import (
 	"sync"
 	"time"
 
-	"apifinder/config"
-	"apifinder/util"
-
+	"github.com/TheCoderAlex/APISeer/config"
+	"github.com/TheCoderAlex/APISeer/util"
 	"golang.org/x/net/html"
 )
 

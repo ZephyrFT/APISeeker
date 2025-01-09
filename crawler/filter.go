@@ -5,7 +5,7 @@ import (
 	"regexp"
 	"strings"
 
-	"apifinder/config"
+	"github.com/TheCoderAlex/APISeer/config"
 )
 
 // 过滤JS

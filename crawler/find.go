@@ -5,7 +5,7 @@ import (
 	"regexp"
 	"strings"
 
-	"apifinder/config"
+	"github.com/TheCoderAlex/APISeer/config"
 )
 
 func urlFind(cont, host, scheme, path string) []string {

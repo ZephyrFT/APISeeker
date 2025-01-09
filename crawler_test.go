@@ -1,11 +1,12 @@
 package main
 
 import (
-	"apifinder/run"
-	"apifinder/validation"
 	"log"
 	"os"
 	"testing"
+
+	"github.com/TheCoderAlex/APISeer/run"
+	"github.com/TheCoderAlex/APISeer/validation"
 )
 
 func BenchmarkCrawlerRun(b *testing.B) {

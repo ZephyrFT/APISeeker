@@ -1,11 +1,12 @@
 package run
 
 import (
-	"apifinder/keywords"
 	"encoding/json"
 	"log"
 	"os"
 	"path"
+
+	"github.com/TheCoderAlex/APISeer/keywords"
 )
 
 func ExtractKeywords(host string, tmpDir string, LLMURL string) {
