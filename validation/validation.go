@@ -284,6 +284,9 @@ func RunValidation(hst string, site string, h string, tmpDir string, workers int
 			go validation(message, domain, result, failed)
 		}(content, domain)
 	}
-	close(result)
-	close(failed)
+
+	// log.Println("Waiting for all workers to finish...")
+	// time.Sleep(5 * time.Second)
+	// close(result)
+	// close(failed)
 }
