@@ -1,4 +1,4 @@
-module github.com/TheCoderAlex/APISeer
+module github.com/TheCoderAlex/APISeeker
 
 go 1.23.4
 

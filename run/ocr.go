@@ -6,7 +6,7 @@ import (
 	"os"
 	"path"
 
-	"github.com/TheCoderAlex/APISeer/ocr"
+	"github.com/TheCoderAlex/APISeeker/ocr"
 	"github.com/sirupsen/logrus"
 )
 

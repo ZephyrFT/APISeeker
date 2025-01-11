@@ -7,8 +7,8 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/TheCoderAlex/APISeer/run"
-	"github.com/TheCoderAlex/APISeer/validation"
+	"github.com/TheCoderAlex/APISeeker/run"
+	"github.com/TheCoderAlex/APISeeker/validation"
 )
 
 var (

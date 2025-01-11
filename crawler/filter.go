@@ -5,7 +5,7 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/TheCoderAlex/APISeer/config"
+	"github.com/TheCoderAlex/APISeeker/config"
 )
 
 // 过滤JS

@@ -13,7 +13,7 @@ import (
 	"sync"
 	"syscall"
 
-	"github.com/TheCoderAlex/APISeer/crawler"
+	"github.com/TheCoderAlex/APISeeker/crawler"
 	"github.com/sirupsen/logrus"
 )
 

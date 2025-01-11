@@ -5,8 +5,8 @@ import (
 	"os"
 	"testing"
 
-	"github.com/TheCoderAlex/APISeer/run"
-	"github.com/TheCoderAlex/APISeer/validation"
+	"github.com/TheCoderAlex/APISeeker/run"
+	"github.com/TheCoderAlex/APISeeker/validation"
 )
 
 func BenchmarkCrawlerRun(b *testing.B) {

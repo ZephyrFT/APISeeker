@@ -13,8 +13,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/TheCoderAlex/APISeer/config"
-	"github.com/TheCoderAlex/APISeer/util"
+	"github.com/TheCoderAlex/APISeeker/config"
+	"github.com/TheCoderAlex/APISeeker/util"
 	"golang.org/x/net/html"
 )
 

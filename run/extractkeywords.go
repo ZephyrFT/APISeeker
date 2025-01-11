@@ -6,7 +6,7 @@ import (
 	"os"
 	"path"
 
-	"github.com/TheCoderAlex/APISeer/keywords"
+	"github.com/TheCoderAlex/APISeeker/keywords"
 )
 
 func ExtractKeywords(host string, tmpDir string, LLMURL string) {
