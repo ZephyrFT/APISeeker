@@ -10,9 +10,7 @@ We are committed to ensuring that APISeeker is used responsibly. To mitigate pot
 
 # Usage scenarios
 This software may only be used in the following scenarios:
-
-Defense-related scenarios, including but not limited to cybersecurity research, vulnerability assessment, and defensive security measures.
-Any use outside of these specified defense-related scenarios requires explicit written authorization from [TheCoderAlex and 9umpkin].
+- Defense-related scenarios, including but not limited to cybersecurity research, vulnerability assessment, and defensive security measures.
 
 # License
 This project is licensed under our PRIVATE License - see the LICENSE file for details.
