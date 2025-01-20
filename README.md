@@ -1,5 +1,5 @@
 # APISeeker
-A novel tool for proactive detection of shadow APIs in black-box settings
+A novel tool for proactive detection of shadow APIs in black-box settings based on Go.
 
 # Ethical Considerations
 We are committed to ensuring that APISeeker is used responsibly. To mitigate potential negative impacts:
