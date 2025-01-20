@@ -4,6 +4,10 @@ Copyright (c) [2025] [TheCoderAlex and 9umpkin]
 
 This software is licensed only to authorized users and organizations. You may use, modify, and distribute this software only as permitted by the license grant. Unauthorized use or distribution is prohibited.
 
+This software may only be used in the following scenarios:
+- Defense-related scenarios, including but not limited to cybersecurity research, vulnerability assessment, and defensive security measures.
+Any use outside of these specified defense-related scenarios requires explicit written authorization from [TheCoderAlex and 9umpkin].
+
 For authorization requests or further information, please submit an issue on the github repository.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
