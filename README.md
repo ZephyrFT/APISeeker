@@ -9,8 +9,7 @@ We are committed to ensuring that APISeeker is used responsibly. To mitigate pot
 + Community Collaboration: We call for community involvement in developing standards and best practices for using tools like APISeeker to ensure their positive impact on web security.
 
 # Usage scenarios
-This software may only be used in the following scenarios:
-- Defense-related scenarios, including but not limited to cybersecurity research, vulnerability assessment, and defensive security measures.
+This software may only be used in defense-related scenarios, including but not limited to cybersecurity research, vulnerability assessment, and defensive security measures.
 
 # License
 This project is licensed under our PRIVATE License - see the LICENSE file for details.
