@@ -33,54 +33,54 @@ APISeeker is developed in Go language and is configured and run through command-
 ### Command-line Parameters
 - `-url` or `--website`: Specifies the URL of the website to crawl, the default is `https://www.google.com`.
     ```sh
-  ./your_program -url=https://example.com
+  go run main.go -url=https://example.com
     ```
 - `-host` or `--host`: Specifies the hostname of the website, and it cannot be empty.
     ```sh
-  ./your_program -host=example.com
+  go run main.go -host=example.com
     ```
 - `-tmp` or `--tmp`: Specifies the temporary directory, the default is `.tmp`. If the input path is not an absolute path, the program's current working directory will be used to concatenate the path.
     ```sh
-  ./your_program -tmp=/path/to/tmp
+  go run main.go -tmp=/path/to/tmp
     ```
 - `-result` or `--result`: Specifies the result storage directory, the default is `result`. If the input path is not an absolute path, the program's current working directory will be used to concatenate the path.
     ```sh
-  ./your_program -result=/path/to/result
+  go run main.go -result=/path/to/result
     ```
 - `-keywords` or `--keywords`: Specifies the service URL of the keyword extraction large model, the default is `http://127.0.0.1:8000/v1/chat/completions`.
     ```sh
-  ./your_program -keywords=http://your_keywords_llm:8000/v1/chat/completions
+  go run main.go -keywords=http://your_keywords_llm:8000/v1/chat/completions
     ```
 - `-validations` or `--validations`: Specifies the service URL of the validation large model, the default is `http://127.0.0.1:8000/v1/chat/completions`.
     ```sh
-  ./your_program -validations=http://your_validations_llm:8000/v1/chat/completions
+  go run main.go -validations=http://your_validations_llm:8000/v1/chat/completions
     ```
 - `-chromedriver` or `--chromedriver`: Specifies the path of ChromeDriver, the default is `/usr/local/bin/chromedriver`.
     ```sh
-  ./your_program -chromedriver=/path/to/chromedriver
+  go run main.go -chromedriver=/path/to/chromedriver
     ```
 - `-chrome` or `--chrome`: Specifies the path of the Chrome browser, the default is `/usr/bin/google-chrome`.
     ```sh
-  ./your_program -chrome=/path/to/google-chrome
+  go run main.go -chrome=/path/to/google-chrome
     ```
 - `-cookie` or `--cookie`: You can specify a cookie for possible authentication or other purposes (default is empty).
     ```sh
-  ./your_program -cookie="your_cookie_value"
+  go run main.go -cookie="your_cookie_value"
     ```
 - `-limit` or `--limit`: Specifies the maximum crawling limit, the default is 500.
     ```sh
-  ./your_program -limit=1000
+  go run main.go -limit=1000
     ```
 - `-ocr` or `--ocr`: A boolean flag indicating whether to use OCR to extract text from images, the default is `false`.
     ```sh
-  ./your_program -ocr=true
+  go run main.go -ocr=true
     ```
 
 
 ### Example
 Here is a complete example showing how to run the program using all parameters:
 ```sh
-./your_program -url=https://example.com -host=example.com -tmp=/tmp -result=/results -keywords=http://your_keywords_llm:8000/v1/chat/completions -validations=http://your_validations_llm:8000/v1/chat/completions -chromedriver=/path/to/chromedriver -chrome=/path/to/google-chrome -cookie="your_cookie_value" -limit=1000 -ocr=true
+go run main.go -url=https://example.com -host=example.com -tmp=/tmp -result=/results -keywords=http://your_keywords_llm:8000/v1/chat/completions -validations=http://your_validations_llm:8000/v1/chat/completions -chromedriver=/path/to/chromedriver -chrome=/path/to/google-chrome -cookie="your_cookie_value" -limit=1000 -ocr=true
 ```
 
 ### Program Flow
