@@ -26,12 +26,12 @@ var (
 )
 
 func main() {
-	flag.StringVar(&website, "url", "https://www.baidu.com", "Website URL")
-	flag.StringVar(&host, "host", "baidu.com", "Host name")
+	flag.StringVar(&website, "url", "https://www.google.com", "Website URL")
+	flag.StringVar(&host, "host", "google.com", "Host name")
 	flag.StringVar(&tmpDir, "tmp", ".tmp", "Temporary directory")
 	flag.StringVar(&resultDir, "result", "result", "Result directory")
-	flag.StringVar(&keywordsLLMURL, "keywords", "http://192.168.3.6:8000/v1/chat/completions", "Keywords LLM URL")
-	flag.StringVar(&validationsLLMURL, "validations", "http://192.168.3.5:8000/v1/chat/completions", "Validations LLM URL")
+	flag.StringVar(&keywordsLLMURL, "keywords", "http://127.0.0.1:8000/v1/chat/completions", "Keywords LLM URL")
+	flag.StringVar(&validationsLLMURL, "validations", "http://127.0.0.1:8000/v1/chat/completions", "Validations LLM URL")
 	flag.StringVar(&chromeDriverPath, "chromedriver", "/usr/local/bin/chromedriver", "Chrome driver path")
 	flag.StringVar(&chromePath, "chrome", "/usr/bin/google-chrome", "Chrome path")
 	flag.StringVar(&cookie, "cookie", "", "Cookie")
